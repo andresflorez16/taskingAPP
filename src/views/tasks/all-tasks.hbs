@@ -1,0 +1,30 @@
+<div class="row">
+    {{#each tasks}}
+    <div class="col-md-3">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title d-flex justify-content-between align-items-center">
+                    {{title}} <a href="/tasks/edit/{{_id}}"><i class="far fa-edit"></i></a>
+                </h4>
+                <p>{{date}}</p>
+                <p>{{description}}</p>
+                <form action="/tasks/delete/{{_id}}?_method=DELETE" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button class="btn btn-danger btn-sm" style="width: 100%;" type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+    <div class="col-md-5 mx-auto">
+        {{#unless tasks}}
+        <div class="card ">
+            <div class="card-body">
+                <h1>Hello {{user}}</h1>
+                <p class="lead">There aren't tasks yet!</p>
+                <a href="/tasks/add" class="btn btn-success">Create one</a>
+            </div>
+        </div>
+        {{/unless}}
+    </div>
+</div>
